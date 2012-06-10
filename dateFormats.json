@@ -1,0 +1,49 @@
+{
+    "usa" : {
+        "D" : ["Sun", "Mon", "Tue", "Wen", "Thu", "Fri", "Sat"],
+        "l" : ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "M" : ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        "F" : ["January", "February", "March", "April", "May", "June", "July",
+            "August", "September", "October", "November", "December"],
+        "format" : "%l, %F %d, %Y %h:%i:%s %A"
+    },
+    "eng" : {
+        "D" : ["Sun", "Mon", "Tue", "Wen", "Thu", "Fri", "Sat"],
+        "l" : ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "M" : ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        "F" : ["January", "February", "March", "April", "May", "June", "July",
+            "August", "September", "October", "November", "December"],
+        "format" : "%l, %d %F %Y %H:%i:%s"
+    },
+    "ita" : {
+        "D" : ["Dom", "Lun", "Mar", "Mer", "Gio", "Ven", "Sab"],
+        "l" : ["Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato"],
+        "M" : ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic"],
+        "F" : ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno",
+            "Luglio","Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"],
+        "format" : "%l, %d %F %Y %H:%i:%s"
+    },
+    "deu" : {
+        "D" : ["So.", "Mo.", "Di.", "Mi.", "Do.", "Fr.", "Sa."],
+        "l" : ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"],
+        "M" : ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
+        "F" : ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli",
+            "August", "September", "Oktober", "November", "Dezember"],
+        "format" : "%l, %d. %F %Y %H:%i:%s"
+    },
+    "fra" : {
+        "D" : ["dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam."],
+        "l" : ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"],
+        "M" : ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."],
+        "F" : ["janvier", "février", "mars", "avril", "mai", "juin", "juillet",
+            "août", "septembre", "octobre", "novembre", "décembre"],
+        "format" : "%l %d %F %Y %H:%i:%s"
+    },
+    "jpn" : {
+        "D" : ["日", "月", "火", "水", "木", "金", "土"],
+        "l" : ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"],
+        "M" : ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+        "F" : ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+        "format" : "%Y年%F%d日%l%G時%i分%s秒"
+    }
+}
