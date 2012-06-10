@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <title>Jquery.i18now by mbitto</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Jquery.i18now</h1>
+        <h2>This plugin helps to customize easily client-side date and time formatting.</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/mbitto/jquery.i18Now/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/mbitto/jquery.i18Now/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/mbitto/jquery.i18Now" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h3>Demo:</h3>
+
+<p>See here: <a href="http://mbitto.com/projects.html">http://mbitto.com/projects.html</a></p>
+
+<h3>Usage:</h3>
+
+<p>Get translations and formats from JSON file write them directly to a JavaScript file:</p>
+
+<pre><code>{
+    "usa" : {
+        "D" : ["Sun", "Mon", "Tue", "Wen", "Thu", "Fri", "Sat"],
+        "l" : ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "M" : ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        "F" : ["January", "February", "March", "April", "May", "June", "July",
+            "August", "September", "October", "November", "December"],
+        "format" : "%l, %F %d, %Y %h:%i:%s %A"
+    },
+    "deu" : {
+        "D" : ["So.", "Mo.", "Di.", "Mi.", "Do.", "Fr.", "Sa."],
+        "l" : ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"],
+        "M" : ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
+        "F" : ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli",
+            "August", "September", "Oktober", "November", "Dezember"],
+        "format" : "%l, %d. %F %Y %H:%i:%s"
+    },
+    "jpn" : {
+        "D" : ["日", "月", "火", "水", "木", "金", "土"],
+        "l" : ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"],
+        "M" : ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+        "F" : ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+        "format" : "%Y年%F%d日%l%G時%i分%s秒"
+    }
+}
+</code></pre>
+
+<p>Initialize i18Now:</p>
+
+<pre><code>$("#date-usa").i18Now(formats['usa']);
+</code></pre>
+
+<p>Update it every n seconds</p>
+
+<pre><code>$("#date-usa").i18Now('update', 1);
+</code></pre>
+
+<p>Create a custom date and time format with default translation (english)</p>
+
+<pre><code>$("#date-custom").i18Now({
+    format : "It's %l, %j/%F/%y"
+});
+</code></pre>
+
+<p>Show any date and time that you like, using JavaScript Date object</p>
+
+<pre><code>$("#date-custom").i18Now('setCustomDate', new Date(1986, 2, 24));
+</code></pre>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
