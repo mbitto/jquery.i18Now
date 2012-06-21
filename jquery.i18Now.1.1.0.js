@@ -1,9 +1,13 @@
 /**
  * jquery.i18Now
- * Version:     1.2.0
+ * Version:     1.1.0
  * Last Update: 2012/06/05
  * Manuel Bitto (manuel.bitto@gmail.com)
  *
+ *
+ * changes log:
+ *
+ * version 1.1.0 -> Added fallback date for custom date
  *
  * This plugin is intended to help formatting date and time according to the user preferences
  * or the most used format in a specific country.
@@ -127,8 +131,14 @@
         },
 
         // Set a custom static date. Param must be a Date object
-        setCustomDate : function(dateObj){
-            this.text(parseFormat(this.data('i18Now_options'), dateObj));
+        setCustomDate : function(dateObj, fallback){
+            fallback = fallback || 'Invalid Date';
+
+            if(isNaN(dateObj.getTime())){
+                this.text(fallback);
+            }else{
+                this.text(parseFormat(this.data('i18Now_options'), dateObj));
+            }
         }
     };
 
