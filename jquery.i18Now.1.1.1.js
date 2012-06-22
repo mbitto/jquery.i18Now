@@ -1,13 +1,14 @@
 /**
  * jquery.i18Now
- * Version:     1.1.0
- * Last Update: 2012/06/05
+ * Version:     1.1.1
+ * Last Update: 2012/06/22
  * Manuel Bitto (manuel.bitto@gmail.com)
  *
  *
  * changes log:
  *
  * version 1.1.0 -> Added fallback date for custom date
+ * version 1.1.1 -> Added control for null value as custom date input
  *
  * This plugin is intended to help formatting date and time according to the user preferences
  * or the most used format in a specific country.
@@ -74,7 +75,7 @@
     };
 
     var parseFormat = function(options, date){
-            var day = date.getDate(),
+        var day = date.getDate(),
             month = date.getMonth(),
             hours24 = date.getHours(),
             hours12 = date.getHours() % 12,
@@ -134,9 +135,10 @@
         setCustomDate : function(dateObj, fallback){
             fallback = fallback || 'Invalid Date';
 
-            if(isNaN(dateObj.getTime())){
+            if(dateObj.getTime() === 0 || isNaN(dateObj.getTime())){
                 this.text(fallback);
-            }else{
+            }
+            else{
                 this.text(parseFormat(this.data('i18Now_options'), dateObj));
             }
         }

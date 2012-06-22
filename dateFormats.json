@@ -39,6 +39,34 @@
             "août", "septembre", "octobre", "novembre", "décembre"],
         "format" : "%l %d %F %Y %H:%i:%s"
     },
+
+    "spa" : {
+        "D" : ["dom", "lun", "mar", "mié", "jue", "vie", "sáb"],
+        "l" : ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"],
+        "M" : ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"],
+        "F" : ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre",
+               "noviembre", "diciembre"],
+        "format" : "%l %d de %F de %Y %H:%i:%s"
+    },
+
+    "por" : {
+        "D" : ["dom", "seg", "ter", "qua", "qui", "sex", "sáb"],
+        "l" : ["domingo", "segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado"],
+        "M" : ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"],
+        "F" : ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro",
+               "novembro", "dezembro"],
+        "format" : "%l, %d de %F de %Y %H:%i:%s"
+    },
+
+    "hrv" : {
+        "D" : ["ned", "pon", "uto", "sri", "čet", "pet", "sub"],
+        "l" : ["nedjelja", "ponedjeljak", "utorak", "srijeda", "četvrtak", "petak", "subota"],
+        "M" : ["sij", "velj", "ožu", "tra", "svi", "lip", "srp", "kol", "ruj", "lis", "stu", "pro"],
+        "F" : ["siječnja", "veljače", "ožujka", "travnja", "svibnja", "lipnja", "srpnja", "kolovoza",
+               "rujna", "listopada", "studenoga", "prosinca"],
+        "format" : "%l, %d.  %F %Y. %H:%i:%s"
+    },
+
     "jpn" : {
         "D" : ["日", "月", "火", "水", "木", "金", "土"],
         "l" : ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"],
