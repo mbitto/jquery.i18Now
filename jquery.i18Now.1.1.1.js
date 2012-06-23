@@ -133,8 +133,9 @@
 
         // Set a custom static date. Param must be a Date object
         setCustomDate : function(dateObj, fallback){
-            fallback = fallback || 'Invalid Date';
-
+            if(typeof fallback === "undefined"){
+                fallback = 'Invalid Date';
+            }
             if(dateObj.getTime() === 0 || isNaN(dateObj.getTime())){
                 this.text(fallback);
             }
