@@ -21,7 +21,7 @@
         "M" : ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic"],
         "F" : ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno",
             "Luglio","Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"],
-        "format" : "%l, %d %F %Y %H:%i:%s"
+        "format" : "%l %d %F %Y %H:%i:%s"
     },
     "deu" : {
         "D" : ["So.", "Mo.", "Di.", "Mi.", "Do.", "Fr.", "Sa."],
