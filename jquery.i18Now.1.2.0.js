@@ -1,7 +1,8 @@
 /**
  * jquery.i18Now
- * Version:     1.1.1
- * Last Update: 2012/06/22
+ *
+ * Version:     1.2.0
+ * Last Update: 2012/07/15
  * Manuel Bitto (manuel.bitto@gmail.com)
  *
  *
@@ -9,10 +10,11 @@
  *
  * version 1.1.0 -> Added fallback date for custom date
  * version 1.1.1 -> Added control for null value as custom date input
+ * version 1.2.0 -> Added customizable AM / PM strings in options (ampm)
  *
  * This plugin is intended to help formatting date and time according to the user preferences
  * or the most used format in a specific country.
- * Examples of formatted date and times for different country and languages are:
+ * Here there are some examples of formatted date and times for different country and languages:
  *
  *
  * English (United States):     Wednesday, May 23, 2012 9:00:00 AM
@@ -26,7 +28,7 @@
  * Chinese (China):             2012年5月23日星期午9时00分00秒
  * Russian (Russia):            среда, 23 мая 2012 г. 9:00:00
  *
- * See here for more examples: http://www.localeplanet.com/icu/
+ * See here for more examples: http://demo.icu-project.org/icu-bin/locexp/locexp
  *
  *
  * We use the same format characters of PHP (see: http://php.net/manual/en/function.date.php)
@@ -62,6 +64,8 @@
             M : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
             F : ['January', 'February', 'March', 'April', 'May', 'June', 'July',
                 'August', 'September', 'October', 'November', 'December'],
+            // Format for AM / PM (english - USA)
+            ampm : ['AM', 'PM'],
             // Format as the default language (english - UK)
             format : "%l, %d %F %Y %H:%i:%s"
         }, options);
@@ -81,7 +85,7 @@
             hours12 = date.getHours() % 12,
             minutes = date.getMinutes(),
             seconds = date.getSeconds(),
-            formatChars = options.format.split("%"),
+            formatChars = options["format"].split("%"),
             substitute = '',
             parsedTimeString = '';
 
@@ -96,8 +100,9 @@
                 case 'd': substitute = setTwoDigits(day); break;
                 case 'Y': substitute = date.getFullYear(); break;
                 case 'y': substitute = date.getFullYear().toString().substring(2); break;
-                case 'a': substitute = (hours24 <= 12) ? 'am' : 'pm' ; break;
-                case 'A': substitute = (hours24 <= 12) ? 'AM' : 'PM' ; break;
+                case 'a': substitute = (hours24 <= 12) ? options['ampm'][0].toLowerCase() :
+                                                         options['ampm'][1].toLowerCase() ; break;
+                case 'A': substitute = (hours24 <= 12) ? options['ampm'][0] : options['ampm'][1] ; break;
                 case 'g': substitute = hours12; break;
                 case 'G': substitute = hours24; break;
                 case 'h': substitute = setTwoDigits(hours12); break;
