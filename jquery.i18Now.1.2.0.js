@@ -88,6 +88,10 @@
             formatChars = options["format"].split("%"),
             substitute = '',
             parsedTimeString = '';
+        
+        if (hours12 === 0) {
+            hours12 = 12;
+        }
 
         for(var i=0; i<formatChars.length; i++){
             var formatChar = formatChars[i].charAt(0);
@@ -100,9 +104,9 @@
                 case 'd': substitute = setTwoDigits(day); break;
                 case 'Y': substitute = date.getFullYear(); break;
                 case 'y': substitute = date.getFullYear().toString().substring(2); break;
-                case 'a': substitute = (hours24 <= 12) ? options['ampm'][0].toLowerCase() :
+                case 'a': substitute = (hours24 < 12) ? options['ampm'][0].toLowerCase() :
                                                          options['ampm'][1].toLowerCase() ; break;
-                case 'A': substitute = (hours24 <= 12) ? options['ampm'][0] : options['ampm'][1] ; break;
+                case 'A': substitute = (hours24 < 12) ? options['ampm'][0] : options['ampm'][1] ; break;
                 case 'g': substitute = hours12; break;
                 case 'G': substitute = hours24; break;
                 case 'h': substitute = setTwoDigits(hours12); break;
