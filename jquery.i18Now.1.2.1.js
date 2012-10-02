@@ -96,10 +96,6 @@
             hours12 = 12;
         }
 
-        if (hours12 === 0) {
-            hours12 = 12;
-        }
-
         for(var i=0; i<formatChars.length; i++){
             var formatChar = formatChars[i].charAt(0);
             switch(formatChar){
