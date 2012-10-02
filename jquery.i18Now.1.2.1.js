@@ -91,6 +91,10 @@
             formatChars = options["format"].split("%"),
             substitute = '',
             parsedTimeString = '';
+        
+        if (hours12 === 0) {
+            hours12 = 12;
+        }
 
         if (hours12 === 0) {
             hours12 = 12;
