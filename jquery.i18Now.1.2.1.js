@@ -1,7 +1,7 @@
 /**
  * jquery.i18Now
  *
- * Version:     1.2.0
+ * Version:     1.2.1
  * Last Update: 2012/07/15
  * Manuel Bitto (manuel.bitto@gmail.com)
  *
@@ -11,6 +11,8 @@
  * version 1.1.0 -> Added fallback date for custom date
  * version 1.1.1 -> Added control for null value as custom date input
  * version 1.2.0 -> Added customizable AM / PM strings in options (ampm)
+ * version 1.2.1 -> Corrected AM/PM 12 hour logic as in http://goo.gl/IUVXP
+ *                  Added form inputs support
  *
  * This plugin is intended to help formatting date and time according to the user preferences
  * or the most used format in a specific country.
@@ -75,6 +77,7 @@
             var $el = $(el);
             $el.data('i18Now_options', options);
             $el.text(parseFormat(options, new Date()));
+            $el.val(parseFormat(options, new Date()));
         });
     };
 
@@ -89,6 +92,10 @@
             substitute = '',
             parsedTimeString = '';
 
+        if (hours12 === 0) {
+            hours12 = 12;
+        }
+
         for(var i=0; i<formatChars.length; i++){
             var formatChar = formatChars[i].charAt(0);
             switch(formatChar){
@@ -100,9 +107,9 @@
                 case 'd': substitute = setTwoDigits(day); break;
                 case 'Y': substitute = date.getFullYear(); break;
                 case 'y': substitute = date.getFullYear().toString().substring(2); break;
-                case 'a': substitute = (hours24 <= 12) ? options['ampm'][0].toLowerCase() :
+                case 'a': substitute = (hours24 < 12) ? options['ampm'][0].toLowerCase() :
                                                          options['ampm'][1].toLowerCase() ; break;
-                case 'A': substitute = (hours24 <= 12) ? options['ampm'][0] : options['ampm'][1] ; break;
+                case 'A': substitute = (hours24 < 12) ? options['ampm'][0] : options['ampm'][1] ; break;
                 case 'g': substitute = hours12; break;
                 case 'G': substitute = hours24; break;
                 case 'h': substitute = setTwoDigits(hours12); break;
@@ -131,6 +138,7 @@
                 }
                 var interval = setInterval(function(){
                     $el.text(parseFormat($el.data('i18Now_options'), new Date()));
+                    $el.val(parseFormat($el.data('i18Now_options'), new Date()));
                 }, every * 1000);
                 $el.data('i18Now_interval', interval);
             });
@@ -143,9 +151,11 @@
             }
             if(dateObj.getTime() === 0 || isNaN(dateObj.getTime())){
                 this.text(fallback);
+                this.val(fallback);
             }
             else{
                 this.text(parseFormat(this.data('i18Now_options'), dateObj));
+                this.val(parseFormat(this.data('i18Now_options'), dateObj));
             }
         }
     };
