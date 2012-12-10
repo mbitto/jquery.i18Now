@@ -1,8 +1,8 @@
 /**
  * jquery.i18Now
  *
- * Version:     1.2.1
- * Last Update: 2012/07/15
+ * Version:     1.2.2
+ * Last Update: 2012/12/10
  * Manuel Bitto (manuel.bitto@gmail.com)
  *
  *
@@ -13,6 +13,7 @@
  * version 1.2.0 -> Added customizable AM / PM strings in options (ampm)
  * version 1.2.1 -> Corrected AM/PM 12 hour logic as in http://goo.gl/IUVXP
  *                  Added form inputs support
+ * version 1.2.2 -> Fixed English translation
  *
  * This plugin is intended to help formatting date and time according to the user preferences
  * or the most used format in a specific country.
@@ -61,7 +62,7 @@
     var init = function(options) {
         options = $.extend({
             // Names of weekdays and months (english - UK)
-            D : ['Sun', 'Mon', 'Tue', 'Wen', 'Thu', 'Fri', 'Sat'],
+            D : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
             l : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
             M : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
             F : ['January', 'February', 'March', 'April', 'May', 'June', 'July',
