@@ -77,11 +77,14 @@ $(function(){
     $("#date-spa").i18Now('update', 1);
 
     // Custom dates
-    $("#date-custom").i18Now({format : "It's %l, %j/%F/%y"});
-    $("#date-custom").i18Now('setCustomDate', new Date(1982, 9, 3));
+    $("#date-custom1").i18Now({format : "Was %l, %j/%F/%y"});
+    $("#date-custom1").i18Now('setCustomDate', new Date(1982, 9, 3));
 
-    $("#date-custom").i18Now(formatsExamples.ita);
-    $("#date-custom").i18Now({format : "Domani sarà %l, %j/%F/%y"});
-    $("#date-custom").i18Now('setCustomDate', new Date(1982, 9, 3));
+
+    var customItalianDate = $.extend({}, formatsExamples.ita);
+    customItalianDate.format = "Domani sarà %l, %j/%F/%Y";
+
+    $("#date-custom2").i18Now(customItalianDate);
+    $("#date-custom2").i18Now('setCustomDate', new Date(new Date().getTime() + (24 * 60 * 60 * 1000)));
 
 });
