@@ -77,7 +77,6 @@
         // Initialize all i18Now elements
         return this.each(function(i, el){
             var $el = $(el);
-            console.log(el, options);
             $el.data('i18Now_options', options);
             $el.text(parseFormat(options, new Date()));
             $el.val(parseFormat(options, new Date()));
