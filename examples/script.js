@@ -86,7 +86,8 @@ $(function(){
     $("#date-custom2").i18Now(customItalianDate);
     $("#date-custom2").i18Now('setCustomDate', new Date(+new Date + (24 * 60 * 60 * 1000)));
 
-    $("#date-custom3").i18Now({format : "GMT +06:00 %l, %j %F %Y %H:%i:%s"});
+    $("#date-custom3").i18Now({format : "locale+6H %l, %j %F %Y %H:%i:%s"});
     $("#date-custom3").i18Now('setCustomDate', new Date(+new Date + (6 * 60 * 60 * 1000)));
     $("#date-custom3").i18Now('update', 1);
+
 });

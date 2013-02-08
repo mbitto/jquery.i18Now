@@ -1,8 +1,8 @@
 /**
  * jquery.i18Now
  *
- * Version:     1.3.0
- * Last Update: 2013/2/6
+ * Version:     1.3.1
+ * Last Update: 2013/2/8
  * Manuel Bitto (manuel.bitto@gmail.com)
  *
  *
@@ -16,6 +16,7 @@
  * version 1.2.2 -> Fixed English translation
  * version 1.2.3 -> Fixed Custom date bug
  * version 1.3.0 -> Added Custom date update (useful for time offset)
+ * version 1.3.1 -> Performance improvements (now uses only one Date object declaration inside plugin)
  *
  * This plugin is intended to help formatting date and time according to the user preferences
  * or the most used format in a specific country.
@@ -62,6 +63,9 @@
 (function($) {
 
     var init = function(options) {
+
+        var date = new Date();
+
         options = $.extend({
             // Names of weekdays and months (english - UK)
             D : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
@@ -79,8 +83,9 @@
         return this.each(function(i, el){
             var $el = $(el);
             $el.data('i18Now_options', options);
-            $el.text(parseFormat(options, new Date()));
-            $el.val(parseFormat(options, new Date()));
+            $el.data('i18Now_date', date);
+            $el.text(parseFormat(options, date));
+            $el.val(parseFormat(options, date));
         });
     };
 
@@ -140,13 +145,8 @@
                     clearInterval($el.data('i18Now_interval'));
                 }
                 var interval = setInterval(function(){
-                    var date = $el.data('customDate');
-                    if(typeof date !== "undefined"){
-                        date.setSeconds(date.getSeconds() + 1);
-                    }
-                    else{
-                        date = new Date();
-                    }
+                    var date = $el.data('i18Now_date');
+                    date.setSeconds(date.getSeconds() + 1);
                     $el.text(parseFormat($el.data('i18Now_options'), date));
                     $el.val(parseFormat($el.data('i18Now_options'), date));
                 }, every * 1000);
@@ -167,7 +167,7 @@
                 var parsedFormat = parseFormat(this.data('i18Now_options'), dateObj);
                 this.text(parsedFormat);
                 this.val(parsedFormat);
-                this.data('customDate', dateObj);
+                this.data('i18Now_date', dateObj);
             }
         }
     };
