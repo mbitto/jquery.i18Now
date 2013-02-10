@@ -1,8 +1,8 @@
 /**
  * jquery.i18Now
  *
- * Version:     1.3.1
- * Last Update: 2013/2/8
+ * Version:     1.4.0
+ * Last Update: 2013/2/10
  * Manuel Bitto (manuel.bitto@gmail.com)
  *
  *
@@ -17,6 +17,8 @@
  * version 1.2.3 -> Fixed Custom date bug
  * version 1.3.0 -> Added Custom date update (useful for time offset)
  * version 1.3.1 -> Performance improvements (now uses only one Date object declaration inside plugin)
+ * version 1.4.0 -> Added locale-unaware time management
+ *
  *
  * This plugin is intended to help formatting date and time according to the user preferences
  * or the most used format in a specific country.
@@ -84,18 +86,21 @@
             var $el = $(el);
             $el.data('i18Now_options', options);
             $el.data('i18Now_date', date);
-            $el.text(parseFormat(options, date));
-            $el.val(parseFormat(options, date));
+            $el.text(parseFormat(options, date, false));
+            $el.val(parseFormat(options, date, false));
         });
     };
 
-    var parseFormat = function(options, date){
-        var day = date.getDate(),
-            month = date.getMonth(),
-            hours24 = date.getHours(),
-            hours12 = date.getHours() % 12,
-            minutes = date.getMinutes(),
-            seconds = date.getSeconds(),
+    var parseFormat = function(options, date, useUTC){
+        var useUTC = useUTC === true ? 'UTC' : '';
+
+        var day = date['get' + useUTC +  'Date'](),
+            month = date['get' + useUTC +  'Month'](),
+            hours24 = date['get' + useUTC +  'Hours'](),
+            hours12 = date['get' + useUTC +  'Hours']() % 12,
+            minutes = date['get' + useUTC +  'Minutes'](),
+            seconds = date['get' + useUTC +  'Seconds'](),
+
             formatChars = options["format"].split("%"),
             substitute = '',
             parsedTimeString = formatChars[0];
@@ -144,17 +149,18 @@
                 if(typeof $el.data('i18Now_interval') !== "undefined"){
                     clearInterval($el.data('i18Now_interval'));
                 }
+                var localeUnaware = $el.data('i18Now_locale_unaware') || false;
                 var interval = setInterval(function(){
                     var date = $el.data('i18Now_date');
                     date.setSeconds(date.getSeconds() + 1);
-                    $el.text(parseFormat($el.data('i18Now_options'), date));
-                    $el.val(parseFormat($el.data('i18Now_options'), date));
+                    $el.text(parseFormat($el.data('i18Now_options'), date, localeUnaware));
+                    $el.val(parseFormat($el.data('i18Now_options'), date, localeUnaware));
                 }, every * 1000);
                 $el.data('i18Now_interval', interval);
             });
         },
 
-        // Set a custom static date. Param must be a Date object
+        // Set a custom date. Param must be a Date object
         setCustomDate : function(dateObj, fallback){
             if(typeof fallback === "undefined"){
                 fallback = 'Invalid Date';
@@ -164,11 +170,40 @@
                 this.val(fallback);
             }
             else{
-                var parsedFormat = parseFormat(this.data('i18Now_options'), dateObj);
+                var parsedFormat = parseFormat(this.data('i18Now_options'), dateObj, false);
                 this.text(parsedFormat);
                 this.val(parsedFormat);
                 this.data('i18Now_date', dateObj);
             }
+        },
+
+        /**
+         * @param date accepts strings in RFC 2822 format ie:  "Fri, 08 Feb 2013 14:30:17 +0800" or
+         *        "Fri, 08 Feb 2013 6:30:17 GMT". In this case any timezone passed will be ignored
+         *
+         * @param timezoneOffset accepts the time zone offset in this format: "+0200", "-0445", "+0000"
+         *        This offset will be added to output date
+         *
+         */
+        setLocaleUnawareDate : function(date, timezoneOffset){
+            var dateOnly = date.substr(0, date.lastIndexOf(' ')),
+                forcedUTCDate = new Date(dateOnly + ' GMT');
+
+            if(typeof timezoneOffset !== "undefined"){
+                var hours = +timezoneOffset.substring(1, 3),
+                    minutes = +timezoneOffset.substring(3, 5),
+                    multiplier = timezoneOffset.charAt(0) === '+' ? 1 : -1;
+
+                forcedUTCDate.setUTCMinutes(forcedUTCDate.getUTCMinutes() + (minutes * multiplier));
+                forcedUTCDate.setUTCHours(forcedUTCDate.getUTCHours() + (hours * multiplier));
+            }
+
+            var parsedFormat = parseFormat(this.data('i18Now_options'), forcedUTCDate, true);
+
+            this.text(parsedFormat);
+            this.val(parsedFormat);
+            this.data('i18Now_date', forcedUTCDate);
+            this.data('i18Now_locale_unaware', true);
         }
     };
 

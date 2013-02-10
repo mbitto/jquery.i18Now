@@ -86,8 +86,17 @@ $(function(){
     $("#date-custom2").i18Now(customItalianDate);
     $("#date-custom2").i18Now('setCustomDate', new Date(+new Date + (24 * 60 * 60 * 1000)));
 
-    $("#date-custom3").i18Now({format : "locale+6H %l, %j %F %Y %H:%i:%s"});
+    // Timezones changes
+    $("#date-custom3").i18Now({format : "%l, %j %F %Y %H:%i:%s"});
     $("#date-custom3").i18Now('setCustomDate', new Date(+new Date + (6 * 60 * 60 * 1000)));
     $("#date-custom3").i18Now('update', 1);
+
+    $("#date-custom4").i18Now({format : "%l, %j %F %Y %H:%i:%s"});
+    $("#date-custom4").i18Now('setLocaleUnawareDate', 'Fri, 08 Feb 2013 14:30:00 +0800');
+    $("#date-custom4").i18Now('update', 1);
+
+    $("#date-custom5").i18Now({format : "%l, %j %F %Y %H:%i:%s"});
+    $("#date-custom5").i18Now('setLocaleUnawareDate', 'Fri, 08 Feb 2013 14:30:00 GMT', '+0445');
+    $("#date-custom5").i18Now('update', 1);
 
 });
