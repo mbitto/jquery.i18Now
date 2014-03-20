@@ -177,6 +177,11 @@
             }
         },
 
+        // Format a date object
+        parseFormat: function(options, dateObj) {
+            return parseFormat(options, dateObj);
+        }
+
         /**
          * @param date accepts strings in RFC 2822 format ie:  "Fri, 08 Feb 2013 14:30:17 +0800" or
          *        "Fri, 08 Feb 2013 6:30:17 GMT". In this case any timezone passed will be ignored
