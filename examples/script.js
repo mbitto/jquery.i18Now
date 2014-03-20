@@ -98,5 +98,4 @@ $(function(){
     $("#date-custom5").i18Now({format : "%l, %j %F %Y %H:%i:%s"});
     $("#date-custom5").i18Now('setLocaleUnawareDate', 'Fri, 08 Feb 2013 14:30:00 GMT', '+0445');
     $("#date-custom5").i18Now('update', 1);
-
 });

@@ -1,8 +1,8 @@
 /**
  * jquery.i18Now
  *
- * Version:     1.4.0
- * Last Update: 2013/2/10
+ * Version:     1.4.1
+ * Last Update: 2014/3/20
  * Manuel Bitto (manuel.bitto@gmail.com)
  *
  *
@@ -18,6 +18,7 @@
  * version 1.3.0 -> Added Custom date update (useful for time offset)
  * version 1.3.1 -> Performance improvements (now uses only one Date object declaration inside plugin)
  * version 1.4.0 -> Added locale-unaware time management
+ * version 1.4.1 -> Added parseFormat public method (zidagar)
  *
  *
  * This plugin is intended to help formatting date and time according to the user preferences
@@ -180,7 +181,7 @@
         // Format a date object
         parseFormat: function(options, dateObj) {
             return parseFormat(options, dateObj);
-        }
+        },
 
         /**
          * @param date accepts strings in RFC 2822 format ie:  "Fri, 08 Feb 2013 14:30:17 +0800" or
